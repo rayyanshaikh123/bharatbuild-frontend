@@ -1,14 +1,4 @@
 {
-  "name": "bharatbuild-frontend",
-  "version": "1.0.0",
-  "homepage": "https://bharatbuild.vercel.app",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "env": {
-    "NEXT_PUBLIC_API_URL": {
-      "description": "Backend API URL",
-      "value": "https://your-backend-url.com"
-    }
-  }
+  "framework": "nextjs"
 }
