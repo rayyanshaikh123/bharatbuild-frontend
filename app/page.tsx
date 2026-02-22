@@ -213,7 +213,7 @@ const LandingPage = () => {
 
               <div className="flex flex-wrap gap-4 pt-8">
                 <a 
-                  href="https://github.com/rayyanshaikh123/bharatbuild-frontend/releases/download/v1.0.0/bharatbuild-app.apk" 
+                  href="https://hjnnnxn3zvhgz0ka.public.blob.vercel-storage.com/bharatbuild-app.apk" 
                   download="BharatBuild-App.apk"
                   className="h-14 px-8 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white flex items-center gap-3 transition-all hover:scale-[1.02] shadow-lg hover:shadow-xl"
                   target="_blank"
