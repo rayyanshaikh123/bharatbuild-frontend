@@ -1,0 +1,108 @@
+// Types for Ledger API responses - based on backend ledger.service.js
+
+export type LedgerEntryType = "MATERIAL" | "WAGE" | "ADJUSTMENT";
+
+export interface LedgerEntry {
+  date: string;
+  type: LedgerEntryType;
+  reference_id: string; // UUID
+  description: string;
+  amount: number;
+  running_total: number;
+  category: string;
+  approved_by: string | null;
+  approved_at: string;
+}
+
+export interface LedgerFilters {
+  startDate?: string;
+  endDate?: string;
+  type?: LedgerEntryType | null;
+  page?: number;
+  limit?: number;
+}
+
+export interface LedgerPagination {
+  page: number;
+  limit: number;
+  total: number;
+  total_pages: number;
+}
+
+export interface LedgerResponse {
+  entries: LedgerEntry[];
+  pagination: LedgerPagination;
+  filters: {
+    start_date: string;
+    end_date: string;
+    type: LedgerEntryType | null;
+  };
+}
+
+export interface LedgerAdjustmentData {
+  date: string;
+  description: string;
+  amount: number;
+  category?: string;
+  notes?: string;
+}
+
+export interface LedgerAdjustment {
+  id: string; // UUID
+  project_id: string; // UUID
+  date: string;
+  description: string;
+  amount: number;
+  category: string;
+  notes: string | null;
+  created_by: string; // UUID
+  created_at: string;
+}
+
+// ==================== AUDIT TYPES ====================
+
+export type AuditCategory = 
+  | "PROJECT"
+  | "PLAN"
+  | "MATERIAL"
+  | "WAGE"
+  | "ATTENDANCE"
+  | "LEDGER"
+  | "USER";
+
+export type AuditAction = "CREATE" | "UPDATE" | "DELETE" | "APPROVE" | "REJECT";
+
+export interface AuditLog {
+  id: string; // UUID
+  entity_type: string;
+  entity_id: string; // UUID
+  category: AuditCategory;
+  action: AuditAction;
+  acted_by_id: string; // UUID - was user_id
+  acted_by_role: string; // was user_type
+  project_id: string | null; // UUID
+  project_name: string | null;
+  organization_id: string; // UUID
+  change_summary: any | null; // was string | null
+  created_at: string;
+}
+
+export interface AuditFilters {
+  project_id?: string | null;
+  category?: AuditCategory | null;
+  start_date?: string;
+  end_date?: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface AuditResponse {
+  audits: AuditLog[];
+  pagination: LedgerPagination;
+  filters: {
+    project_id: string | null;
+    category: AuditCategory | null;
+    start_date: string;
+    end_date: string;
+  };
+}
